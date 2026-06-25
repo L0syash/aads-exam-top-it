@@ -19,50 +19,40 @@ namespace losev
     Person result;
     result.id = 0;
     result.info = "";
-
     if (line.empty())
     {
       return result;
     }
-
     size_t pos = 0;
     while (pos < line.length() && (line[pos] == ' ' || line[pos] == '\t'))
     {
       ++pos;
     }
-
     if (pos >= line.length())
     {
       return result;
     }
-
     std::string numStr = "";
     while (pos < line.length() && line[pos] >= '0' && line[pos] <= '9')
     {
       numStr += line[pos];
       ++pos;
     }
-
     if (numStr.empty())
     {
       return result;
     }
-
     result.id = std::stoull(numStr);
-
     while (pos < line.length() && (line[pos] == ' ' || line[pos] == '\t'))
     {
       ++pos;
     }
-
     if (pos >= line.length())
     {
       result.info = "";
       return result;
     }
-
     result.info = line.substr(pos);
-
     return result;
   }
 
@@ -72,32 +62,22 @@ namespace losev
     std::string line;
     while (std::getline(in, line))
     {
-      if (line.empty())
-      {
-        ++ignoredCount;
-        continue;
-      }
-
       Person p = parseLine(line);
-
       if (p.id == 0 && p.info.empty())
       {
         ++ignoredCount;
         continue;
       }
-
       if (p.info.empty())
       {
         ++ignoredCount;
         continue;
       }
-
       if (findId(people, p.id))
       {
         ++ignoredCount;
         continue;
       }
-
       pushBack(people, p);
       ++successCount;
     }
@@ -118,11 +98,9 @@ namespace losev
     Args result;
     result.hasIn = false;
     result.hasOut = false;
-
     for (int i = 1; i < argc; ++i)
     {
       std::string arg = argv[i];
-
       if (arg.substr(0, 3) == "in:")
       {
         if (result.hasIn)
@@ -146,7 +124,6 @@ namespace losev
         throw std::invalid_argument("Invalid argument: " + arg);
       }
     }
-
     return result;
   }
 }

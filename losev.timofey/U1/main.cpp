@@ -13,7 +13,6 @@ namespace losev
     bool hasIn;
     bool hasOut;
   };
-
   Args parseArgs(int argc, char* argv[]);
   Person parseLine(const std::string& line);
   void processInput(std::istream& in, Node*& people,
@@ -38,6 +37,7 @@ int main(int argc, char* argv[])
       }
       inStream = &inFile;
     }
+
     losev::Node* people = nullptr;
     size_t successCount = 0;
     size_t ignoredCount = 0;
@@ -58,11 +58,8 @@ int main(int argc, char* argv[])
     {
       losev::printResults(std::cout, people);
     }
-
     std::cerr << successCount << " " << ignoredCount << "\n";
-
     losev::clearList(people);
-
     return 0;
   }
   catch (const std::invalid_argument& e)
