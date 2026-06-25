@@ -34,11 +34,11 @@ namespace losev
   void addPerson(PersonStorage& storage, const Person& person);
   bool findPersonId(const PersonStorage& storage, size_t id);
   const Person* findPerson(const PersonStorage& storage, size_t id);
+  bool existsPerson(const PersonStorage& storage, size_t id);
   void clearPersonStorage(PersonStorage& storage);
 
   void initMeetingStorage(MeetingStorage& storage);
   void addMeeting(MeetingStorage& storage, const Meeting& meeting);
-  void getMeetingsById(const MeetingStorage& storage, size_t id, MeetingNode*& resultHead, MeetingNode*& resultTail);
   void clearMeetingStorage(MeetingStorage& storage);
 }
 

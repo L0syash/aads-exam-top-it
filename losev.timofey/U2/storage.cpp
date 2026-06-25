@@ -54,6 +54,11 @@ namespace losev
     return nullptr;
   }
 
+  bool existsPerson(const PersonStorage& storage, size_t id)
+  {
+    return findPersonId(storage, id);
+  }
+
   void clearPersonStorage(PersonStorage& storage)
   {
     PersonNode* current = storage.head;
@@ -88,35 +93,6 @@ namespace losev
     {
       storage.tail->next = node;
       storage.tail = node;
-    }
-  }
-
-  void getMeetingsById(const MeetingStorage& storage, size_t id, MeetingNode*& resultHead, MeetingNode*& resultTail)
-  {
-    resultHead = nullptr;
-    resultTail = nullptr;
-
-    MeetingNode* current = storage.head;
-    while (current != nullptr)
-    {
-      if (current->data.id1 == id || current->data.id2 == id)
-      {
-        MeetingNode* node = new MeetingNode;
-        node->data = current->data;
-        node->next = nullptr;
-
-        if (resultTail == nullptr)
-        {
-          resultHead = node;
-          resultTail = node;
-        }
-        else
-        {
-          resultTail->next = node;
-          resultTail = node;
-        }
-      }
-      current = current->next;
     }
   }
 
