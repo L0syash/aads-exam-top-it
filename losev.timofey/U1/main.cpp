@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <stdexcept>
 
 #include "list.hpp"
 
@@ -25,10 +26,8 @@ int main(int argc, char* argv[])
   try
   {
     losev::Args args = losev::parseArgs(argc, argv);
-
     std::ifstream inFile;
     std::istream* inStream = &std::cin;
-
     if (args.hasIn)
     {
       inFile.open(args.inFile);
@@ -39,11 +38,9 @@ int main(int argc, char* argv[])
       }
       inStream = &inFile;
     }
-
     losev::Node* people = nullptr;
     size_t successCount = 0;
     size_t ignoredCount = 0;
-
     losev::processInput(*inStream, people, successCount, ignoredCount);
 
     if (args.hasOut)
