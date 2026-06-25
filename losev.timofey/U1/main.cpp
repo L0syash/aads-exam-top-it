@@ -13,6 +13,7 @@ namespace losev
     bool hasIn;
     bool hasOut;
   };
+
   Args parseArgs(int argc, char* argv[]);
   Person parseLine(const std::string& line);
   void processInput(std::istream& in, Node*& people,
@@ -64,7 +65,7 @@ int main(int argc, char* argv[])
   if (!parseArgsSimple(argc, argv, inFile, outFile, hasIn, hasOut))
   {
     std::cerr << "Invalid arguments\n";
-    return 0;
+    return 1;
   }
   std::ifstream inFileStream;
   std::istream* inStream = &std::cin;
