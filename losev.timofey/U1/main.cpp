@@ -61,11 +61,12 @@ int main(int argc, char* argv[])
     {
       losev::printResults(std::cout, people);
     }
+
     std::cerr << successCount << " " << ignoredCount << "\n";
     losev::clearList(people);
     return 0;
   }
-  catch (const std::invalid_argument& e)
+  catch (const std::runtime_error& e)
   {
     std::cerr << e.what() << "\n";
     return 1;

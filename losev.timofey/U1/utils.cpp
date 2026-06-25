@@ -65,6 +65,7 @@ namespace losev
       Person p = parseLine(line);
       if (p.id == 0 && p.info.empty())
       {
+        ++ignoredCount;
         continue;
       }
       if (p.info.empty())
@@ -100,11 +101,12 @@ namespace losev
     for (int i = 1; i < argc; ++i)
     {
       std::string arg = argv[i];
+
       if (arg.substr(0, 3) == "in:")
       {
         if (result.hasIn)
         {
-          throw std::invalid_argument("Duplicate in: argument");
+          throw std::runtime_error("Duplicate in: argument");
         }
         result.inFile = arg.substr(3);
         result.hasIn = true;
@@ -113,14 +115,14 @@ namespace losev
       {
         if (result.hasOut)
         {
-          throw std::invalid_argument("Duplicate out: argument");
+          throw std::runtime_error("Duplicate out: argument");
         }
         result.outFile = arg.substr(4);
         result.hasOut = true;
       }
       else
       {
-        throw std::invalid_argument("Invalid argument: " + arg);
+        throw std::runtime_error("Invalid argument: " + arg);
       }
     }
     return result;
